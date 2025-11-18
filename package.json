@@ -1,0 +1,47 @@
+{
+  "name": "bcs-desktop-app",
+  "version": "1.0.0",
+  "description": "Building & Construction Services Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && node server.mjs",
+    "dev:frontend": "cd renderer && pnpm run dev",
+    "start": "electron .",
+    "db:init": "node backend/scripts/initDatabase.js",
+    "build": "cd renderer && pnpm run build && cd ..",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "construction",
+    "desktop-app"
+  ],
+  "author": "Miguel - Building Care Solutions",
+  "license": "ISC",
+  "build": {
+    "appId": "com.buildingcaresolutions.desktop",
+    "productName": "BCS Desktop",
+    "files": [
+      "main.js",
+      "preload.js",
+      "backend/**/*",
+      "!backend/node_modules",
+      "renderer/dist/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist-app"
+    },
+    "mac": {
+      "category": "public.app-category.business",
+      "target": ["dmg", "zip"]
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^31.2.1",
+    "electron-builder": "^26.0.12"
+  }
+}

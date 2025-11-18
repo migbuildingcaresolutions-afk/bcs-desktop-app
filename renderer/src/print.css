@@ -1,0 +1,46 @@
+@media print {
+  /* Hide everything except print content */
+  body * {
+    visibility: hidden;
+  }
+  
+  .print-content, .print-content * {
+    visibility: visible;
+  }
+  
+  .print-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* BCS Professional Print Styles */
+  @page {
+    margin: 1in;
+    size: letter;
+  }
+  
+  .print-header {
+    text-align: center;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .print-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+  }
+  
+  .print-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #e5e7eb;
+    padding-top: 10px;
+    font-size: 10px;
+    text-align: center;
+  }
+}

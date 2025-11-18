@@ -1,0 +1,45 @@
+{
+  "scripts": {
+    "// Development": "Development commands",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:electron\"",
+    "dev:backend": "cd backend && node server.mjs",
+    "dev:frontend": "cd renderer && pnpm run dev",
+    "dev:electron": "wait-on http://localhost:5173 && electron .",
+
+    "// Database": "Database management commands",
+    "db:init": "node backend/scripts/initDatabase.js",
+    "db:migrate": "node backend/scripts/autoPatchSchema.js",
+    "db:seed": "node backend/seed-data.js",
+    "db:reset": "rm -f backend/database/bcs-database.db && npm run db:init && npm run db:seed",
+
+    "// Backend": "Backend server commands",
+    "backend:start": "cd backend && node server.mjs",
+    "backend:dev": "cd backend && nodemon server.mjs",
+    "backend:test": "cd backend && npm test",
+
+    "// Frontend": "Frontend development commands",
+    "frontend:dev": "cd renderer && pnpm run dev",
+    "frontend:build": "cd renderer && pnpm run build",
+    "frontend:preview": "cd renderer && pnpm run preview",
+    "frontend:lint": "cd renderer && pnpm run lint",
+
+    "// Electron": "Electron app commands",
+    "start": "electron .",
+    "electron:dev": "wait-on http://localhost:5173 && electron .",
+    "electron:build": "electron-builder",
+
+    "// Build & Package": "Production build commands",
+    "build": "npm run frontend:build && npm run electron:build",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+
+    "// Utilities": "Utility commands",
+    "clean": "rm -rf node_modules renderer/node_modules backend/node_modules dist build out",
+    "clean:db": "rm -f backend/database/bcs-database.db",
+    "install:all": "npm install && cd renderer && pnpm install && cd ../backend && pnpm install",
+    "test:api": "node test-api-connection.js",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint:fix": "cd renderer && pnpm run lint --fix"
+  }
+}

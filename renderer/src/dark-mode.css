@@ -1,0 +1,57 @@
+/* Global Dark Mode Styles */
+[data-theme="dark"] {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-primary: #374151;
+  --border-secondary: #4b5563;
+}
+
+/* Light Mode - Reset to defaults */
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border-primary: #e5e7eb;
+  --border-secondary: #d1d5db;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] .bg-white { background-color: var(--bg-secondary) !important; }
+[data-theme="dark"] .bg-gray-50 { background-color: var(--bg-primary) !important; }
+[data-theme="dark"] .bg-gray-100 { background-color: var(--bg-secondary) !important; }
+[data-theme="dark"] .bg-gray-200 { background-color: var(--bg-tertiary) !important; }
+
+[data-theme="dark"] .text-gray-900,
+[data-theme="dark"] .text-gray-800 { color: var(--text-primary) !important; }
+[data-theme="dark"] .text-gray-600 { color: var(--text-secondary) !important; }
+[data-theme="dark"] .text-gray-400 { color: var(--text-tertiary) !important; }
+
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300 { border-color: var(--border-primary) !important; }
+
+[data-theme="dark"] table { background-color: var(--bg-secondary); color: var(--text-primary); }
+[data-theme="dark"] thead { background-color: var(--bg-tertiary); }
+[data-theme="dark"] tbody tr { border-color: var(--border-primary); }
+[data-theme="dark"] tbody tr:hover { background-color: var(--bg-tertiary); }
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] button:not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-red"]):not([class*="bg-orange"]):not([class*="bg-purple"]):not([class*="bg-emerald"]) {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .shadow { box-shadow: 0 0 15px rgba(0, 0, 0, 0.5) !important; }

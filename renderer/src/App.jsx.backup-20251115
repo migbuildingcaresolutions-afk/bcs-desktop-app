@@ -1,0 +1,187 @@
+import React, { useState } from 'react';
+import { AppProvider } from './contexts/AppContext';
+import { getTheme } from './theme';
+
+// EXISTING VIEWS
+import ImprovedDashboardView from './views/ImprovedDashboardView';
+import CalendarView from './views/CalendarView';
+import ClientsView from './views/ClientsView';
+import WorkOrdersView from './views/WorkOrdersView';
+import InvoicesView from './views/InvoicesView';
+import EstimatesView from './views/EstimatesView';
+import EmployeesView from './views/EmployeesView';
+import EquipmentView from './views/EquipmentView';
+import MaterialsView from './views/MaterialsView';
+import MoistureLogsView from './views/MoistureLogsView';
+import VendorsView from './views/VendorsView';
+import PriceListView from './views/PriceListView';
+import ChangeOrdersView from './views/ChangeOrdersView';
+import EnhancedQuoteGeneratorView from './views/EnhancedQuoteGeneratorView';
+import CompanySettingsView from './views/CompanySettingsView';
+
+// NEW PLACEHOLDER VIEWS (we will create these files)
+import ServicesView from './views/ServicesView';
+import PricingView from './views/PricingView';
+import ResourcesView from './views/ResourcesView';
+import LineItemsView from './views/LineItemsView';
+import XactimateView from './views/XactimateView';
+import DryOutJobsView from './views/DryOutJobsView';
+import RemediationDryoutView from './views/RemediationDryoutView';
+import RemediationReconstructionView from './views/RemediationReconstructionView';
+import JobTrackingView from './views/JobTrackingView';
+import ReportsView from './views/ReportsView';
+import LoggingUtilityView from './views/LoggingUtilityView';
+import MessagingView from './views/MessagingView';
+import PaymentsView from './views/PaymentsView';
+
+import './App.css';
+
+function App() {
+  const [currentView, setCurrentView] = useState('dashboard');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState('default');
+
+  const theme = getTheme(currentTheme);
+
+  // 🔥 FULL SYSTEM NAVIGATION
+  const navigation = [
+    { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+    { id: 'calendar', label: 'Calendar', icon: '📅' },
+    { id: 'moisturelogs', label: 'Moisture Logs', icon: '💧' },
+
+    // Core business
+    { id: 'clients', label: 'Clients', icon: '👥' },
+    { id: 'workorders', label: 'Work Orders', icon: '📋' },
+    { id: 'estimates', label: 'Estimates', icon: '📄' },
+    { id: 'invoices', label: 'Invoices', icon: '💰' },
+    { id: 'payments', label: 'Payments', icon: '💳' },
+    { id: 'changeorders', label: 'Change Orders', icon: '🔄' },
+
+    // Pricing / data modules
+    { id: 'pricelist', label: 'Price List', icon: '💲' },
+    { id: 'pricing', label: 'Pricing', icon: '💵' },
+    { id: 'lineitems', label: 'Line Items', icon: '🧾' },
+
+    // Assets & resources
+    { id: 'employees', label: 'Employees', icon: '👷' },
+    { id: 'equipment', label: 'Equipment', icon: '🔧' },
+    { id: 'materials', label: 'Materials', icon: '📦' },
+    { id: 'vendors', label: 'Vendors', icon: '🏢' },
+    { id: 'services', label: 'Services', icon: '🛠️' },
+    { id: 'resources', label: 'Resources', icon: '📚' },
+
+    // Specialized modules
+    { id: 'quotegenerator', label: 'Quote Generator', icon: '🧮' },
+    { id: 'xactimate', label: 'Xactimate', icon: '📐' },
+
+    // Remediation
+    { id: 'remdryout', label: 'Remediation – Dryout', icon: '💧' },
+    { id: 'remrecon', label: 'Remediation – Reconstruction', icon: '🏗️' },
+
+    // Job Tracking
+    { id: 'dryoutjobs', label: 'Dry-Out Jobs', icon: '🔥' },
+    { id: 'jobtracking', label: 'Job Tracking', icon: '🚧' },
+
+    // Utility & Reports
+    { id: 'loggingutility', label: 'Logging Utility', icon: '📜' },
+    { id: 'reports', label: 'Reports', icon: '📈' },
+
+    // Messaging
+    { id: 'messaging', label: 'Bulk Messaging', icon: '💬' },
+
+    // Settings
+    { id: 'companysettings', label: 'Settings', icon: '⚙️' },
+  ];
+
+  // 🔥 FULL SYSTEM VIEW RENDERING
+  const renderView = () => {
+    switch (currentView) {
+      case 'dashboard': return <ImprovedDashboardView onNavigate={setCurrentView} />;
+      case 'calendar': return <CalendarView />;
+      case 'clients': return <ClientsView />;
+      case 'workorders': return <WorkOrdersView />;
+      case 'invoices': return <InvoicesView />;
+      case 'payments': return <PaymentsView />;
+      case 'estimates': return <EstimatesView />;
+      case 'changeorders': return <ChangeOrdersView />;
+      case 'pricelist': return <PriceListView />;
+      case 'pricing': return <PricingView />;
+      case 'employees': return <EmployeesView />;
+      case 'moisturelogs': return <MoistureLogsView />;
+      case 'equipment': return <EquipmentView />;
+      case 'materials': return <MaterialsView />;
+      case 'vendors': return <VendorsView />;
+      case 'services': return <ServicesView />;
+      case 'resources': return <ResourcesView />;
+      case 'lineitems': return <LineItemsView />;
+      case 'xactimate': return <XactimateView />;
+      case 'dryoutjobs': return <DryOutJobsView />;
+      case 'remdryout': return <RemediationDryoutView />;
+      case 'remrecon': return <RemediationReconstructionView />;
+      case 'jobtracking': return <JobTrackingView />;
+      case 'loggingutility': return <LoggingUtilityView />;
+      case 'reports': return <ReportsView />;
+      case 'quotegenerator': return <EnhancedQuoteGeneratorView />;
+      case 'messaging': return <MessagingView />;
+      case 'companysettings': return <CompanySettingsView />;
+      default: return <ImprovedDashboardView />;
+    }
+  };
+
+  return (
+    <AppProvider>
+      <div className="flex h-screen bg-gray-50">
+        
+        {/* SIDEBAR */}
+        <aside className={`bg-gradient-to-b ${theme.sidebarBg} ${theme.sidebarText} flex flex-col transition-all duration-300 shadow-2xl ${sidebarCollapsed ? 'w-20' : 'w-80'}`}>
+          
+          {/* ... identical sidebar UI ... */}
+          
+          <nav className="flex-1 overflow-y-auto py-4 scrollbar-thin scrollbar-thumb-gray-700">
+            {navigation.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setCurrentView(item.id)}
+                className={`w-full text-left px-8 py-4 flex items-center gap-4 transition-all duration-200 border-l-4 ${
+                  currentView === item.id
+                    ? `bg-gradient-to-r ${theme.activeMenuBg} shadow-lg ${theme.activeMenuShadow} ${theme.activeMenuBorder}`
+                    : `border-transparent ${theme.hoverMenuBg}`
+                }`}
+                title={sidebarCollapsed ? item.label : ''}
+              >
+                <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                {!sidebarCollapsed && (
+                  <span className="font-medium text-sm leading-relaxed">{item.label}</span>
+                )}
+              </button>
+            ))}
+          </nav>
+            {/* Theme Selector */}
+          <div className="p-4 border-t border-slate-700">
+            <select
+              value={currentTheme}
+              onChange={(e) => setCurrentTheme(e.target.value)}
+              className="w-full px-3 py-2 rounded-lg bg-slate-800 text-gray-100 border border-slate-600 hover:bg-slate-700 transition-colors cursor-pointer"
+              title="Change theme"
+            >
+              <option value="default">🔵 Default</option>
+              <option value="emerald">🟢 Emerald</option>
+              <option value="purple">🟣 Purple</option>
+              <option value="orange">🟠 Orange</option>
+              <option value="dark">⚫ Dark Mode</option>
+            </select>
+          </div>
+
+        </aside>
+
+        {/* MAIN CONTENT */}
+        <main className="flex-1 overflow-y-auto bg-gray-50">
+          {renderView()}
+        </main>
+      </div>
+    </AppProvider>
+  );
+}
+
+export default App;
+

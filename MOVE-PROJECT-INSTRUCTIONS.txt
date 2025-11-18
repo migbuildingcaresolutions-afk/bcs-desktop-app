@@ -1,0 +1,82 @@
+⚠️  CRITICAL: Your Desktop is synced to iCloud - this is preventing the project from working!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔧 SOLUTION: Move this project to a non-iCloud location
+
+═══════════════════════════════════════════════════════════════════════════════
+
+STEP 1: Open Terminal (Applications → Utilities → Terminal)
+
+STEP 2: Copy and paste these commands ONE AT A TIME:
+
+# Create a Projects folder in your home directory (NOT synced to iCloud)
+mkdir -p ~/Projects
+
+# Move the entire project there
+mv ~/Desktop/bcs-desktop-app ~/Projects/bcs-desktop-app
+
+# Navigate to the new location
+cd ~/Projects/bcs-desktop-app
+
+# Clean out iCloud placeholder files
+cd backend
+rm -rf node_modules package-lock.json pnpm-lock.yaml
+cd ../renderer  
+rm -rf node_modules package-lock.json pnpm-lock.yaml
+cd ..
+
+# Install backend dependencies
+cd backend
+npm install
+
+# Install frontend dependencies  
+cd ../renderer
+npm install
+
+# Go back to project root
+cd ..
+
+STEP 3: Start the backend server
+
+cd ~/Projects/bcs-desktop-app/backend
+node server.mjs
+
+(Leave this terminal window open - the server needs to keep running)
+
+STEP 4: In a NEW terminal window, start the frontend
+
+cd ~/Projects/bcs-desktop-app/renderer
+npm run dev
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ DONE! Your app should now be running at http://localhost:5173
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📝 WHAT I'VE ALREADY CREATED FOR YOU:
+
+✅ All 22 backend route files (in backend/routes/)
+✅ Complete server.mjs with all routes configured
+✅ Database connection module (db.js)
+✅ Frontend API client (renderer/src/api-client.js)
+✅ React hooks for API calls (renderer/src/hooks/useAPI.js)
+✅ Example component (renderer/src/examples/ClientsExample.jsx)
+✅ Complete documentation
+
+Everything is ready - you just need to move it out of iCloud!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+❓ WHY THIS HAPPENED:
+
+- macOS syncs ~/Desktop and ~/Documents to iCloud by default
+- iCloud stores files as "placeholders" to save space
+- Node.js cannot read these placeholder files
+- This causes "ETIMEDOUT" errors
+
+💡 BEST PRACTICE: Always keep development projects in ~/Projects/ or ~/dev/
+
+═══════════════════════════════════════════════════════════════════════════════
+

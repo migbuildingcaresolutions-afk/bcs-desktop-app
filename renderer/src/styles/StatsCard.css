@@ -1,0 +1,123 @@
+/* Stats Card Styles */
+
+.stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+}
+
+.stats-card.clickable {
+  cursor: pointer;
+}
+
+/* Alert variant */
+.stats-card.alert {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.stats-card.alert:hover {
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
+}
+
+/* Success variant */
+.stats-card.success {
+  background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+  box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3);
+}
+
+/* Warning variant */
+.stats-card.warning {
+  background: linear-gradient(135deg, #ffd43b 0%, #fab005 100%);
+  box-shadow: 0 4px 12px rgba(255, 212, 59, 0.3);
+}
+
+/* Info variant */
+.stats-card.info {
+  background: linear-gradient(135deg, #4dabf7 0%, #228be6 100%);
+  box-shadow: 0 4px 12px rgba(77, 171, 247, 0.3);
+}
+
+.stats-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stats-icon {
+  font-size: 32px;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.stats-title {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stats-value {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stats-trend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trend-indicator {
+  font-size: 18px;
+}
+
+.trend-up {
+  color: #d4f5d4;
+}
+
+.trend-down {
+  color: #ffd4d4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stats-card {
+    padding: 16px;
+  }
+
+  .stats-value {
+    font-size: 28px;
+  }
+
+  .stats-icon {
+    font-size: 24px;
+  }
+}
